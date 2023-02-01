@@ -1,0 +1,20 @@
+﻿<Window x:Class="SmallShop.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmallShop"
+        mc:Ignorable="d"
+        Title="Admin" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="productView" HorizontalAlignment="Center" Height="207" Margin="5" VerticalAlignment="Top" Width="760"
+                  CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}">
+           <DataGrid.Columns>
+                <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}" Width="182"/>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}" Width="190"/>
+                <DataGridTextColumn Header="Amount(kg)" Binding="{Binding Amount}" Width="190"/>
+                <DataGridTextColumn Header="Price(CAD)/kg" Binding="{Binding Price}" Width="190"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
