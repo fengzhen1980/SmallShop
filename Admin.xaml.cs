@@ -25,7 +25,8 @@ namespace SmallShop
         public Admin()
         {
             InitializeComponent();
-            string connectionString = "Data Source=LAPTOP-3T67EE6I;Initial Catalog=SmallShopDB;Integrated Security=True";
+            string connectionString = "Data Source=laptop-he38d91k\\sqlexpress;Initial Catalog=SmallShopDB;Integrated Security=True";
+
             con = new SqlConnection(connectionString);
 
             this.productView.ItemsSource = GetProductData().DefaultView;
@@ -58,6 +59,138 @@ namespace SmallShop
             con.Close();
             
             return dt;
+        }
+
+
+
+
+        
+        
+        
+        
+        
+
+        private void View_date_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {   
+                con.Open();
+                
+                string Query = "Select ProductId,ProductName,Amount,Price from product";
+                
+                SqlCommand cmd = new SqlCommand(Query, con);
+                
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                productView.ItemsSource = dt.AsDataView();
+                DataContext = da;
+                con.Close();
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
+        }
+
+        private void InsertButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //open the Database Connection
+                con.Open();
+                string query = "insert into product values(@ProductId,@ProductName,@Amount,@Price)";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@ProductId", int.Parse(ProductIdTextBox.Text));//Convert.ToInt64(Id.Text)
+                                                                                     //we need to call the textBox name and then grab the text
+                cmd.Parameters.AddWithValue("@ProductName", ProductNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@Amount", int.Parse(AmountTextBox.Text));
+                cmd.Parameters.AddWithValue("@Price", float.Parse(PriceTextBox.Text));
+                //we now need to execute our Query
+
+                cmd.ExecuteNonQuery();//?
+                MessageBox.Show("Inserted perfectly to the Database");
+                con.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //open the Database Connection
+                con.Open();
+                string Query = "Update product set ProductName=@ProductName,Amount=@Amount,Price=@Price where ProductId=@ProductId";
+                SqlCommand cmd = new SqlCommand(Query, con);
+                cmd.Parameters.AddWithValue("@ProductId", int.Parse(ProductIdTextBox.Text));
+                cmd.Parameters.AddWithValue("@ProductName", ProductNameTextBox.Text);
+                cmd.Parameters.AddWithValue("@Amount", float.Parse(AmountTextBox.Text));
+                cmd.Parameters.AddWithValue("@Price", float.Parse(PriceTextBox.Text));
+                //we now need to execute our Query
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Updated Perectly to the Database");
+                con.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
+
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                con.Open();
+                string Query = "Delete product where ProductId=@ProductId";
+                SqlCommand cmd = new SqlCommand(Query, con);
+                cmd.Parameters.AddWithValue("@ProductId", int.Parse(ProductIdTextBox.Text));
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Delete successfully");
+                con.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                con.Open();
+                string Query = "Select ProductName,Amount,Price from product where ProductId=@ProductName";
+
+
+                SqlCommand cmd = new SqlCommand(Query, con);
+                cmd.Parameters.AddWithValue("@ProductId", int.Parse(ProductIdTextBox.Text));
+                SqlDataReader sqlReader = cmd.ExecuteReader();
+                while (sqlReader.Read())
+                {
+                    ProductNameTextBox.Text = (string)sqlReader.GetValue(0);
+                    AmountTextBox.Text = sqlReader.GetValue(1).ToString();
+                    PriceTextBox.Text = sqlReader.GetValue(2).ToString();
+                }
+                con.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                con.Close();
+            }
         }
     }
 }

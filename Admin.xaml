@@ -6,15 +6,34 @@
         xmlns:local="clr-namespace:SmallShop"
         mc:Ignorable="d"
         Title="Admin" Height="450" Width="800">
-    <Grid>
-        <DataGrid x:Name="productView" HorizontalAlignment="Center" Height="207" Margin="5" VerticalAlignment="Top" Width="760"
-                  CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}">
-           <DataGrid.Columns>
+    <Grid Margin="0,0,0,-11">
+        <DataGrid x:Name="productView" HorizontalAlignment="Center" Height="207" VerticalAlignment="Top" Width="760"
+                  CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}"  Margin="0,13,0,0">
+            <DataGrid.Columns>
                 <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}" Width="182"/>
                 <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}" Width="190"/>
                 <DataGridTextColumn Header="Amount(kg)" Binding="{Binding Amount}" Width="190"/>
                 <DataGridTextColumn Header="Price(CAD)/kg" Binding="{Binding Price}" Width="190"/>
             </DataGrid.Columns>
         </DataGrid>
+        <ComboBox HorizontalAlignment="Left" Margin="82,547,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="20,547,0,0" VerticalAlignment="Top" Height="73"/>
+        <Label Content="Label" HorizontalAlignment="Right" Margin="0,603,821,0" VerticalAlignment="Top" Height="37" RenderTransformOrigin="0.5,0.5" Width="100"></Label>
+        
+        <Grid HorizontalAlignment="Left" Height="805" Margin="-530,474,0,0" VerticalAlignment="Top" Width="1530"/>
+        <Grid HorizontalAlignment="Left" Height="802" Margin="-535,547,0,0" VerticalAlignment="Top" Width="1555"/>
+        <Label x:Name="ProductId" Content="ProductId" HorizontalAlignment="Left" Margin="29,252,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="ProductName" Content="ProductName" HorizontalAlignment="Left" Margin="181,252,0,0" VerticalAlignment="Top" Height="31"/>
+        <Label x:Name="Amount" Content="Amount" HorizontalAlignment="Center" Margin="0,252,0,0" VerticalAlignment="Top" Width="136"/>
+        <Label x:Name="Price" Content="Price" HorizontalAlignment="Left" Margin="505,252,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.615,-0.968"/>
+        <Button x:Name="View_date" Content="View date" HorizontalAlignment="Left" Margin="630,248,0,0" VerticalAlignment="Top" Width="123" Click="View_date_Click"/>
+        <Button x:Name="InsertButton" Content="Insert" HorizontalAlignment="Left" Margin="29,364,0,0" VerticalAlignment="Top" Click="InsertButton_Click" Width="120"/>
+        <Button x:Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Margin="181,364,0,0" VerticalAlignment="Top" Click="UpdateButton_Click" Width="120" />
+        <Button x:Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Margin="340,364,0,0" VerticalAlignment="Top" Click="DeleteButton_Click" Width="128"/>
+        <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="505,364,0,0" VerticalAlignment="Top" Width="120" Click="SearchButton_Click"/>
+        <TextBox x:Name="PriceTextBox" HorizontalAlignment="Left" Margin="505,304,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="AmountTextBox" HorizontalAlignment="Center" Margin="0,304,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+        <TextBox x:Name="ProductNameTextBox" HorizontalAlignment="Left" Margin="181,304,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ProductIdTextBox" HorizontalAlignment="Left" Margin="29,304,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
