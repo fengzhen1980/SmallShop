@@ -33,7 +33,7 @@ namespace SmallShop
         {
            
             InitializeComponent();
-            string connectionString = "Data Source=laptop-he38d91k\\sqlexpress;Initial Catalog=SmallShopDB;Integrated Security=True";
+            string connectionString = "Data Source=DESKTOP-N6HDOK0\\sqlexpress;Initial Catalog=SmallShopDB;Integrated Security=True";
             con = new SqlConnection(connectionString);
 
             productNames = GetProductData();

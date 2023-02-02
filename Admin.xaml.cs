@@ -25,7 +25,7 @@ namespace SmallShop
         public Admin()
         {
             InitializeComponent();
-            string connectionString = "Data Source=laptop-he38d91k\\sqlexpress;Initial Catalog=SmallShopDB;Integrated Security=True";
+            string connectionString = "Data Source=DESKTOP-N6HDOK0\\sqlexpress;Initial Catalog=SmallShopDB;Integrated Security=True";
 
             con = new SqlConnection(connectionString);
 
@@ -114,6 +114,11 @@ namespace SmallShop
                 cmd.ExecuteNonQuery();//?
                 MessageBox.Show("Inserted perfectly to the Database");
                 con.Close();
+                ProductIdTextBox.Clear();
+                ProductNameTextBox.Clear();
+                AmountTextBox.Clear();
+                PriceTextBox.Clear();
+
             }
             catch (SqlException ex)
             {
@@ -139,6 +144,10 @@ namespace SmallShop
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Updated Perectly to the Database");
                 con.Close();
+                ProductIdTextBox.Clear();
+                ProductNameTextBox.Clear();
+                AmountTextBox.Clear();
+                PriceTextBox.Clear();
             }
             catch (SqlException ex)
             {
@@ -159,6 +168,10 @@ namespace SmallShop
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Delete successfully");
                 con.Close();
+                ProductIdTextBox.Clear();
+                ProductNameTextBox.Clear();
+                AmountTextBox.Clear();
+                PriceTextBox.Clear();
             }
             catch (SqlException ex)
             {
@@ -191,6 +204,13 @@ namespace SmallShop
                 MessageBox.Show(ex.Message);
                 con.Close();
             }
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow MainWin = new MainWindow();
+            this.Close();
+            MainWin.Show();
         }
     }
 }
