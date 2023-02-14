@@ -25,7 +25,7 @@ namespace SmallShop
         public Admin()
         {
             InitializeComponent();
-            string connectionString = "Data Source=DESKTOP-N6HDOK0\\sqlexpress;Initial Catalog=SmallShopDB;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-3T67EE6I;Initial Catalog=SmallShopDB;Integrated Security=True";
 
             con = new SqlConnection(connectionString);
 
@@ -185,7 +185,7 @@ namespace SmallShop
             try
             {
                 con.Open();
-                string Query = "Select ProductName,Amount,Price from product where ProductId=@ProductName";
+                string Query = "Select ProductName,Amount,Price from product where ProductId=@ProductId";
 
 
                 SqlCommand cmd = new SqlCommand(Query, con);
